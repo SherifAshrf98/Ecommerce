@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Style from "./Nav.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../Assets/images/freshcart-logo.svg"
 import { AuthContext } from "../Context/AuthContext";
@@ -56,7 +55,7 @@ export default function Nav() {
             </ul> : ""}
 
 
-            <ul className="navbar-nav mb-2 mb-lg-0 align-items-center">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center ">
               <li className="nav-item position-relative ">
                 <Link to="cart"><i className="fa-solid fa-shopping-cart fs-4  text-success "></i></Link>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -71,7 +70,7 @@ export default function Nav() {
                     <Link className="nav-link" to="/login">Login</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="me-5 nav-link" to="/register">Register</Link>
+                    <Link className=" nav-link" to="/register">Register</Link>
                   </li>
                 </>}
             </ul>

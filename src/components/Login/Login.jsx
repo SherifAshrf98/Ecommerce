@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import Style from "./Login.module.css";
+import React, { useContext, useState,useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 import axios from "axios";
@@ -15,6 +14,12 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   let { Token, setToken } = useContext(AuthContext)
+  
+  useEffect(() => {
+    if (Token) {
+      navigate("/Home");
+    }
+  }, [Token, navigate]);
 
   let validationSchema = Yup.object({
 
@@ -84,22 +89,22 @@ export default function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <div className="w-50 m-auto p-5">
-
+      <div className="container m-auto p-5">
+        
         {isSuccess ? <div className="alert alert-success">Welcome Back {loginMessage} </div> : ""}
-
+        
         {errorMessage ? <div className="alert alert-danger">{errorMessage}</div> : ""}
-
+        
         <h2 className="pb-3">Sign In Now:</h2>
 
-        <form onSubmit={formik.handleSubmit} >
+        <form onSubmit={formik.handleSubmit} className="form-control" >
 
-          <label htmlFor="email" className="mb-1">email:</label>
-          <input id="email" type="email" placeholder="email" className="form-control mb-3" name="email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+          <label htmlFor="email" className="mb-1">Email</label>
+          <input id="email" type="email" className="form-control mb-3" name="email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
           {formik.errors.email && formik.touched.email ? <div className="alert alert-danger mt-2 p-2"><span>{formik.errors.email}</span></div> : ''}
 
-          <label htmlFor="password" className="mb-1">password:</label>
-          <input id="password" type="password" placeholder="password" className="form-control mb-3" name="password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+          <label htmlFor="password" className="mb-1">Password</label>
+          <input id="password" type="password" className="form-control mb-3" name="password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} />
           {formik.errors.password && formik.touched.password ? <div className="alert alert-danger mt-2 p-2">{formik.errors.password}</div> : ''}
 
 
